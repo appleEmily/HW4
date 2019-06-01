@@ -11,6 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     let saveData = UserDefaults.standard
     var vegetable = Dictionary<String>
+    //このエラー　ドユコト
+    //dictionary って必ず二つのものでセット？
+
     
     
     
