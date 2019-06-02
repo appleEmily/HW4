@@ -9,34 +9,31 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     let saveData = UserDefaults.standard
-    var vegetable = Dictionary<String>
-    //このエラー　ドユコト
-    //dictionary って必ず二つのものでセット？
-
-    
-    
-    
+    var letSave: [String:String] = [:]
+    var getDictionary: [String:String] = [:]
     @IBOutlet weak var vegText: UITextField!
     
     @IBOutlet weak var fruitText: UITextField!
     
+    @IBAction func save(_ sender: Any) {
+        letSave = ["vegetableName":vegText.text, "fruitName":fruitText.text] as! [String : String]
+        saveData.set(letSave, forKey: "take")
+//        saveData.set(vegText.text, forKey: "vegetableName")
+//        saveData.set(fruitText.text, forKey: "fruitName")
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        if let pickedVege = saveData.string(forKey: "vege") {
-            print(pickedVege)
+        //保存したデータを取り出す
+        if saveData.dictionary(forKey: "take") != nil {
+            getDictionary = saveData.object(forKey: "take") as! [String : String]
+            print(getDictionary)
+            vegText.text = getDictionary["vegetableName"]
+            fruitText.text = getDictionary["fruitName"]
         }
     }
-    
-
-    @IBAction func save(_ sender: Any) {
-        //let vegeDictionary:String = (vegText.text)!
-        //let fruitDictionary:String = fruitText.text
-        
-        
-        saveData.set(vegetable, forKey: "vegetableName")
-    }
-    
 }
 
